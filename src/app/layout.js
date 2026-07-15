@@ -18,12 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang='en'
-      data-theme='dark'
       data-scroll-behavior='smooth'
       suppressHydrationWarning
-      className={`${manrope.className}dark`}
+      className={`${manrope.className}`}
     >
-      <body className='flex min-h-screen flex-col bg-black antialiased'>
+      <body className='flex min-h-screen flex-col  antialiased'>
         <BlackFriday />
         <Navbar />
         <main className='grow'>

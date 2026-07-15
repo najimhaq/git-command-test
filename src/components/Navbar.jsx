@@ -1,126 +1,82 @@
 'use client';
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { ChevronDown, HeartPulse, Plus, Menu } from 'lucide-react';
 import { useState } from 'react';
 
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'About us', path: '/about-us' },
-  { name: 'Doctors', path: '/doctors' },
-  { name: 'Contact', path: '/contact' },
-];
-
-export default function Navbar() {
-  const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const isActivePath = (path) => {
-    if (path === '/') return pathname === '/';
-    return pathname.startsWith(path);
-  };
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className='fixed top-0 left-0 z-50 w-full mt-10'>
-      <nav className='mx-auto mt-4 w-[95%] max-w-7xl rounded-2xl border border-[#C8A96B]/20 bg-[#111111]/75 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.35)]'>
-        <div className='flex items-center justify-between px-4 py-3 md:px-6 lg:px-8'>
-          {/* Logo */}
-          <Link href='/' className='flex items-center gap-3'>
-            <div className='flex h-11 w-11 items-center justify-center rounded-full border border-[#C8A96B]/40 bg-[#1A1A1A] text-[#C8A96B] shadow-inner'>
-              <span className='text-lg font-semibold'>F</span>
-            </div>
-            <div className='leading-tight'>
-              <h2 className='text-lg font-semibold uppercase tracking-[0.18em] text-white'>
-                Foodie
-              </h2>
-              <p className='hidden text-[11px] uppercase tracking-[0.35em] text-[#C8A96B] sm:block'>
-                Fine Dining
-              </p>
-            </div>
-          </Link>
-
-          {/* Desktop Nav */}
-          <div className='hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-2 md:flex'>
-            {navLinks.map((link) => {
-              const isActive = isActivePath(link.path);
-              return (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300 ${
-                    isActive
-                      ? 'bg-[#C8A96B] text-black shadow-md'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+    <nav className='w-full bg-white shadow-md fixed top-0 left-0 z-50 mt-12'>
+      <div className='max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
+        {/* Logo */}
+        <div className='flex items-center gap-2'>
+          <div className='w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center'>
+            <HeartPulse className='w-5 h-5 text-white' aria-hidden='true' />
           </div>
+          <span className='text-xl font-semibold text-gray-800 flex items-center'>
+            MiCare
+            <Plus className='w-4 h-4 text-teal-600 ml-1' aria-hidden='true' />
+          </span>
+        </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            type='button'
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label='Toggle menu'
-            aria-expanded={menuOpen}
-            className='inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden'
+        {/* Desktop Menu */}
+        <ul className='hidden md:flex items-center gap-6 text-gray-700 font-medium'>
+          <li className='hover:text-teal-600 cursor-pointer'>Home</li>
+          <li className='hover:text-teal-600 cursor-pointer'>Services</li>
+          <li className='hover:text-teal-600 cursor-pointer'>About Us</li>
+          <li className='hover:text-teal-600 cursor-pointer'>Doctors</li>
+          <li className='flex items-center gap-1 hover:text-teal-600 cursor-pointer'>
+            Pages <ChevronDown className='w-4 h-4' />
+          </li>
+          <li className='hover:text-teal-600 cursor-pointer'>Contact</li>
+        </ul>
+
+        {/* CTA Button */}
+        <button className='hidden md:block ml-6 bg-teal-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-700 transition'>
+          Book Appointment
+        </button>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className='md:hidden text-gray-700'
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label='Toggle menu'
+        >
+          <Menu className='w-6 h-6' />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className='md:hidden bg-white shadow-md px-4 py-3 space-y-2'>
+          <a href='#' className='block text-gray-700 hover:text-teal-600'>
+            Home
+          </a>
+          <a href='#' className='block text-gray-700 hover:text-teal-600'>
+            Services
+          </a>
+          <a href='#' className='block text-gray-700 hover:text-teal-600'>
+            About Us
+          </a>
+          <a href='#' className='block text-gray-700 hover:text-teal-600'>
+            Doctors
+          </a>
+          <a
+            href='#'
+            className='block text-gray-700 hover:text-teal-600 flex items-center gap-1'
           >
-            <svg
-              className='h-6 w-6'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='1.8'
-              viewBox='0 0 24 24'
-            >
-              {menuOpen ? (
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M6 18L18 6M6 6l12 12'
-                />
-              ) : (
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M4 7h16M4 12h16M4 17h16'
-                />
-              )}
-            </svg>
+            Pages <ChevronDown className='w-4 h-4' />
+          </a>
+          <a href='#' className='block text-gray-700 hover:text-teal-600'>
+            Contact
+          </a>
+          <button className='w-full bg-teal-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-700 transition'>
+            Book Appointment
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`overflow-hidden transition-all duration-300 md:hidden ${
-            menuOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className='space-y-2 px-4 pb-4 pt-2'>
-            {navLinks.map((link) => {
-              const isActive = isActivePath(link.path);
-              return (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`block rounded-xl px-4 py-3 text-sm font-medium tracking-wide transition ${
-                    isActive
-                      ? 'bg-[#C8A96B] text-black'
-                      : 'border border-white/10 bg-white/5 text-white/85 hover:bg-white/10'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
-    </header>
+      )}
+    </nav>
   );
-}
+};
+
+export default Navbar;
