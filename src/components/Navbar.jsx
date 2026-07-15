@@ -3,14 +3,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { FaPhoneAlt } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'Dashboard', path: '/dashboard' },
-  { name: 'Menu', path: '/menu' },
-  { name: 'Cart', path: '/cart' },
-  { name: 'Reservation', path: '/reservation' },
+  { name: 'Services', path: '/services' },
+  { name: 'About us', path: '/about-us' },
+  { name: 'Doctors', path: '/doctors' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -22,8 +20,6 @@ export default function Navbar() {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
-
-  const isReservationPage = pathname === '/reservation';
 
   return (
     <header className='fixed top-0 left-0 z-50 w-full mt-10'>
@@ -63,22 +59,6 @@ export default function Navbar() {
                 </Link>
               );
             })}
-          </div>
-
-          {/* Reservation Button */}
-          <div className='hidden items-center gap-3 md:flex'>
-            <Link
-              href='/reservation'
-              aria-current={isReservationPage ? 'page' : undefined}
-              className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold tracking-wide transition duration-300 ${
-                isReservationPage
-                  ? 'border-[#C8A96B] bg-transparent text-[#C8A96B]'
-                  : 'border-[#C8A96B] bg-[#C8A96B] text-black hover:bg-transparent hover:text-[#C8A96B]'
-              }`}
-            >
-              <FaPhoneAlt className='text-xs' />
-              Reserve Table
-            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -138,19 +118,6 @@ export default function Navbar() {
                 </Link>
               );
             })}
-
-            <Link
-              href='/reservation'
-              onClick={() => setMenuOpen(false)}
-              aria-current={isReservationPage ? 'page' : undefined}
-              className={`block rounded-xl px-4 py-3 text-center text-sm font-semibold tracking-wide transition ${
-                isReservationPage
-                  ? 'border border-[#C8A96B] bg-transparent text-[#C8A96B]'
-                  : 'bg-[#C8A96B] text-black hover:opacity-90'
-              }`}
-            >
-              Reserve Table
-            </Link>
           </div>
         </div>
       </nav>
