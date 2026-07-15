@@ -26,7 +26,7 @@ export default function Navbar() {
   const isReservationPage = pathname === '/reservation';
 
   return (
-    <header className='fixed top-0 left-0 z-50 w-full'>
+    <header className='fixed top-0 left-0 z-50 w-full mt-10'>
       <nav className='mx-auto mt-4 w-[95%] max-w-7xl rounded-2xl border border-[#C8A96B]/20 bg-[#111111]/75 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.35)]'>
         <div className='flex items-center justify-between px-4 py-3 md:px-6 lg:px-8'>
           {/* Logo */}
