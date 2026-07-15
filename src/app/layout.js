@@ -1,5 +1,6 @@
 import { Manrope } from 'next/font/google';
 import './globals.css';
+import Navbar from '@/components/Navbar';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       className={`${manrope.className}dark`}
     >
       <body className='flex min-h-screen flex-col bg-black antialiased'>
+        <Navbar />
         <main className='grow'>
           <div className='mx-auto max-w-full'>{children}</div>
         </main>
