@@ -1,6 +1,7 @@
 'use client';
 import { ChevronDown, HeartPulse, Plus, Menu } from 'lucide-react';
 import { useState } from 'react';
+import ReusableButton from '../reusable/ReusableButton';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ const Navbar = () => {
       <div className='max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
         {/* Logo */}
         <div className='flex items-center gap-2'>
-          <div className='w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center'>
+          <div className='w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center'>
             <HeartPulse className='w-5 h-5 text-white' aria-hidden='true' />
           </div>
           <span className='text-xl font-semibold text-gray-800 flex items-center'>
@@ -32,9 +33,7 @@ const Navbar = () => {
         </ul>
 
         {/* CTA Button */}
-        <button className='hidden md:block ml-6 bg-teal-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-700 transition'>
-          Book Appointment
-        </button>
+        <ReusableButton>Book Appointment</ReusableButton>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -63,14 +62,14 @@ const Navbar = () => {
           </a>
           <a
             href='#'
-            className='block text-gray-700 hover:text-teal-600 flex items-center gap-1'
+            className=' text-gray-700 hover:text-teal-600 flex items-center gap-1'
           >
             Pages <ChevronDown className='w-4 h-4' />
           </a>
           <a href='#' className='block text-gray-700 hover:text-teal-600'>
             Contact
           </a>
-          <button className='w-full bg-teal-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-700 transition'>
+          <button className='w-full bg-cyan-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-700 transition'>
             Book Appointment
           </button>
         </div>

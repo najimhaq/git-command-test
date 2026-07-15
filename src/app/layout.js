@@ -1,7 +1,7 @@
 import { Manrope } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import BlackFriday from '@/components/BlackFriday';
+import Navbar from '@/components/ui/Navbar';
+import BlackFriday from '@/components/ui/BlackFriday';
 
 const manrope = Manrope({
   subsets: ['latin'],
